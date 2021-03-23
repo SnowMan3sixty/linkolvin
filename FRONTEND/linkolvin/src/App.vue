@@ -22,6 +22,7 @@
         <FichaOfertaCompleta :infoOfertaCompleta="modal">
         </FichaOfertaCompleta>
       </b-modal>
+      <Graficos line-chart :chartdata="chartData" :options="chartOptions"></Graficos>
     </div>
   </div>
 </template>
@@ -30,11 +31,12 @@
 import Header from './components/Header.vue'
 import FichaOferta from './components/FichaOferta.vue'
 import FichaOfertaCompleta from './components/FichaOfertaCompleta.vue'
+import Graficos from './components/Graficos.vue'
 
 export default {
   name: 'App',
   components: {
-    Header, FichaOferta, FichaOfertaCompleta
+    Header, FichaOferta, FichaOfertaCompleta, Graficos
   },
   data() {
     return {
