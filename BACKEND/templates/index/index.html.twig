@@ -1,1 +1,17 @@
-<h1>INDEX TESTING</h1>
+{% extends 'base.html.twig' %}
+
+{% block title %}LINKOLVIN COMPANY VIEW
+{% endblock %}
+
+{% block body %}
+	<h1>LINKOLVIN COMPANY VIEW</h1>
+	{% if app.user %}
+		Logged in as:
+		{{ app.user.email }}
+		<a href="{{ path('app_logout') }}">Logout</a>
+	{% endif %}
+	<div>
+		<a href="{{ path('oferta_new')}}">Create new offer</a>
+	</div>
+
+{% endblock %}
