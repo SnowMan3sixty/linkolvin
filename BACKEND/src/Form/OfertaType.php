@@ -18,7 +18,7 @@ class OfertaType extends AbstractType
             ->add('ubicacio')
             ->add('estat')
             ->add('empresa')
-            ->add('candidats')
+            //->add('candidats')
             ->add('categoria')
         ;
     }
