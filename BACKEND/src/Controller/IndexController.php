@@ -37,6 +37,14 @@ class IndexController extends AbstractController
             else{
                 return $this->redirectToRoute('index');
             }        
+       }
+       else if(in_array('ROLE_USER', $this->getUser()->getRoles(), true)){
+            if(!($this->getUser()->isVerified())){
+                return $this->redirectToRoute('candidat_new');
+            }
+            else{
+                return $this->redirect('http://localhost:8080');
+            }     
        }     
        else{
             return $this->redirect('http://localhost:8080');
