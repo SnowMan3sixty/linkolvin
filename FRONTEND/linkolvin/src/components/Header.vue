@@ -10,7 +10,7 @@
       </div>
       <div v-else>
         <b-button variant="primary" href="http://localhost:8000/login">Iniciar Sesión</b-button>
-        <b-button variant="primary">Registrarte</b-button>
+        <b-button variant="primary" href="http://localhost:8000/register">Registrarte</b-button>
       </div>
     </b-navbar>
   </div>

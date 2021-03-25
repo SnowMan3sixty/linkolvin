@@ -78,7 +78,7 @@ export default {
     },
     setCookie(){
          // it gets the cookie called `username`
-      const kevinset = this.$cookies.set("micookie", "valorcookie");
+      const kevinset = this.$cookies.set("micookie", 2);
       console.log(kevinset);
     }
   },
@@ -86,6 +86,8 @@ export default {
     this.axios.get('http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta').then((response) => {
       console.log(response.data.records);
       this.resultado=response.data.records;
+      //alert(this.$session.exists());
+      //alert(this.$cookies.isKey('micookie'));
     })
   }
 }
