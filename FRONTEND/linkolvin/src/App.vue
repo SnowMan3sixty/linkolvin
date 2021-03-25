@@ -10,6 +10,7 @@
         <b-dropdown-item-button @click="dam">DAM</b-dropdown-item-button>
         <b-dropdown-item-button @click="smx">SMX</b-dropdown-item-button>
       </b-dropdown>
+      <button @click="setCookie">Set Cookie</button>
       <b-row class="justify-content-md-center">
         <b-card-group deck>
           <FichaOferta v-for="oferta in resultado"
@@ -75,6 +76,11 @@ export default {
         this.resultado=response.data.records;
       })
     },
+    setCookie(){
+         // it gets the cookie called `username`
+      const kevinset = this.$cookies.set("micookie", "valorcookie");
+      console.log(kevinset);
+    }
   },
   mounted() {
     this.axios.get('http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta').then((response) => {

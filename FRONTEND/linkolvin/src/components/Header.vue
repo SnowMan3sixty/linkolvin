@@ -5,9 +5,13 @@
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
         <b-navbar-brand href="#">Linkolvin</b-navbar-brand>
       </b-container>
-      <b-button variant="primary" href="http://localhost:8000/login">Iniciar Sesión</b-button
-      >
-      <b-button variant="primary">Registrarte</b-button>
+      <div v-if="$cookies.isKey('micookie')">
+        <b-button variant="primary">Salir</b-button>
+      </div>
+      <div v-else>
+        <b-button variant="primary" href="http://localhost:8000/login">Iniciar Sesión</b-button>
+        <b-button variant="primary">Registrarte</b-button>
+      </div>
     </b-navbar>
   </div>
 </template>
