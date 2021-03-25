@@ -5,12 +5,12 @@ export default {
   extends: Bar,
   data: () => ({
     chartdata: {
-      labels: ['January', 'February'],
+      labels: ['Asix', 'Daw', 'Dam', 'Smx'],
       datasets: [
         {
           label: 'Data One',
           backgroundColor: '#f87979',
-          data: [40, 20]
+          data: [1, 2, 1, 1]
         }
       ]
     },
