@@ -21,7 +21,7 @@ class OfertaController extends AbstractController
     public function index(OfertaRepository $ofertaRepository): Response
     {        
         return $this->render('oferta/index.html.twig', [
-            'ofertas' => $ofertaRepository->findAll(),            
+            'ofertas' => $ofertaRepository->findByEmpresa(($this->getDoctrine()->getRepository('App:Empresa')->findOneByUsuari($this->getUser()->getId()))->getID()),  
         ]);
     }
 
