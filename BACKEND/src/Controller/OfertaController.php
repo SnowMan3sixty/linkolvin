@@ -3,21 +3,25 @@
 namespace App\Controller;
 
 use App\Entity\Oferta;
+use App\Entity\Empresa;
 use App\Form\OfertaType;
 use App\Repository\OfertaRepository;
+use App\Repository\EmpresaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+
 
 #[Route('/oferta')]
 class OfertaController extends AbstractController
 {
     #[Route('/', name: 'oferta_index', methods: ['GET'])]
     public function index(OfertaRepository $ofertaRepository): Response
-    {
+    {        
         return $this->render('oferta/index.html.twig', [
-            'ofertas' => $ofertaRepository->findAll(),
+            'ofertas' => $ofertaRepository->findAll(),            
         ]);
     }
 
@@ -25,6 +29,13 @@ class OfertaController extends AbstractController
     public function new(Request $request): Response
     {
         $ofertum = new Oferta();
+        
+        //se consulta el id de la empresa a partir del id del ususario
+        $idEmpresa = ($this->getDoctrine()->getRepository('App:Empresa')->findOneByUsuari($this->getUser()->getId()))->getID();
+        //Se busca el objeto empresa segun el id encontrado anteriormente
+        $ofertum->setEmpresa($this->getDoctrine()->getRepository(Empresa::class)->findOneById($idEmpresa));
+        $ofertum->setEstat(0);
+
         $form = $this->createForm(OfertaType::class, $ofertum);
         $form->handleRequest($request);
 

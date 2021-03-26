@@ -14,10 +14,10 @@ class OfertaType extends AbstractType
         $builder
             ->add('titol')
             ->add('descripcio')
-            ->add('dataPublicacio')
+            //->add('dataPublicacio')
             ->add('ubicacio')
-            ->add('estat')
-            ->add('empresa')
+            //->add('estat')
+            //->add('empresa')
             //->add('candidats')
             ->add('categoria')
         ;

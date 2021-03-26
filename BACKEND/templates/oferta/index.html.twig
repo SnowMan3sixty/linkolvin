@@ -1,43 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Oferta index{% endblock %}
+{% block title %}Tus ofertas{% endblock %}
 
 {% block body %}
-    <h1>Oferta index</h1>
+    <h1>Tus ofertas</h1>
 
+    <a href="{{ path('oferta_new') }}">Crear nueva oferta</a>
+    <br>
+    <br>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Empresa</th>
+                <th>Categoria</th>
                 <th>Titol</th>
                 <th>Descripcio</th>
                 <th>DataPublicacio</th>
                 <th>Ubicacio</th>
                 <th>Estat</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for ofertum in ofertas %}
             <tr>
                 <td>{{ ofertum.id }}</td>
+                <td>{{ ofertum.empresa }}</td>
+                <td>{{ ofertum.categoria}}
                 <td>{{ ofertum.titol }}</td>
                 <td>{{ ofertum.descripcio }}</td>
                 <td>{{ ofertum.dataPublicacio ? ofertum.dataPublicacio|date('Y-m-d') : '' }}</td>
                 <td>{{ ofertum.ubicacio }}</td>
                 <td>{{ ofertum.estat }}</td>
                 <td>
-                    <a href="{{ path('oferta_show', {'id': ofertum.id}) }}">show</a>
-                    <a href="{{ path('oferta_edit', {'id': ofertum.id}) }}">edit</a>
+                    <a href="{{ path('oferta_show', {'id': ofertum.id}) }}">Ver</a>
+                    <a href="{{ path('oferta_edit', {'id': ofertum.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">No hay registros que mostrar</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('oferta_new') }}">Create new</a>
+    <br>
+    <a href="{{ path('index') }}">Atràs</a>
+    
 {% endblock %}

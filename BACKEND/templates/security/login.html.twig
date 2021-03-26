@@ -11,16 +11,16 @@
 
 		{% if app.user %}
 			<div class="mb-3">
-				You are logged in as
+				Sessión iniciada como: 
 				{{ app.user.username }},
 				<a href="{{ path('app_logout') }}">Logout</a>
 			</div>
 		{% endif %}
 
-		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-		<label for="inputEmail">Email</label>
+		<h1 class="h3 mb-3 font-weight-normal">Inicio de sessión: </h1>
+		<label for="inputEmail">Correo</label>
 		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-		<label for="inputPassword">Password</label>
+		<label for="inputPassword">Contraseña</label>
 		<input type="password" name="password" id="inputPassword" class="form-control" required>
 
 		<input
@@ -36,11 +36,13 @@
 		            </label>
 		        </div>
 		    #}
-
+		<br>
+		<br>
 		<button class="btn btn-lg btn-primary" type="submit">
-			Sign in
-		</button>
+			Iniciar sessión
+		</button>		
 	</form>
-	<div>Don't have an account?</div>
-	<a href="{{ path('app_register') }}">Register</a>
+	<br>
+	<div>No tienes una cuenta?</div>
+	<a href="{{ path('app_register') }}">Registrarse</a>
 {% endblock %}

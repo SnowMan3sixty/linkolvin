@@ -1,17 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}LINKOLVIN COMPANY VIEW
+{% block title %}LINKOLVIN GESTIÓN DE TU EMPRESA
 {% endblock %}
 
 {% block body %}
-	<h1>LINKOLVIN COMPANY VIEW</h1>
+	<h1>LINKOLVIN GESTIÓN DE TU EMPRESA</h1>
 	{% if app.user %}
-		Logged in as:
+		Sessión iniciada como:
 		{{ app.user.email }}
-		<a href="{{ path('app_logout') }}">Logout</a>
+		
 	{% endif %}
+	<br>
+	<br>
 	<div>
-		<a href="{{ path('oferta_new')}}">Create new offer</a>
+		<a href="{{ path('oferta_new')}}">Crear nueva oferta</a>
+		<br>
+		<a href="{{ path('oferta_index')}}">Administración de tus ofertas</a>
 	</div>
-
+	<br>
+	<a href="{{ path('app_logout') }}">Cerrar sessión</a>
 {% endblock %}
