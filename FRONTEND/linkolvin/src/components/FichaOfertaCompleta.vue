@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import emailjs from 'emailjs-com';
-
 export default {
   name: 'FichaOfertaCompleta',
   props: {
@@ -52,20 +50,16 @@ export default {
         hideHeaderClose: false,
         centered: true
       })
-      .then(function(value){
+      .then((value) => {
           if (value === true) {
+            this.axios.post({
+              url: 'http://localhost:8000/email',
+              data: {
+                correu: this.infoOfertaCompleta.empresa_id.correu
+              }
+            })
             alert("Tu curriculum ha sido enviado correctamente");
-            var templateParams = {
-                to_name: 'kevilarriega@gmail.com',
-                from_name: 'a18kevlarpal@inspedralbes.cat',
-                message_html: 'Please Find out the attached file'
-            };
-            emailjs.send('service_u5smqsj', 'template_4cooo2i', templateParams, 'user_0CdPDNcOhhrzcq3wy4nk8')
-              .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-              }, function(error) {
-                console.log('FAILED...', error);
-            });
+            console.log("Esto va después del alert");
           }
       })
 
