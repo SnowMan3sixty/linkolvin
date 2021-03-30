@@ -1,22 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}LINKOLVIN GESTIÓN DE TU EMPRESA
+{% block title %}LINKOLVIN ADMINISTRACION
 {% endblock %}
 
 {% block body %}
-	<h1>LINKOLVIN GESTIÓN DE TU EMPRESA</h1>
-	{% if app.user %}
-		Sessión iniciada como:
-		{{ app.user.email }}
-		
-	{% endif %}
-	<br>
-	<br>
-	<div>
-		<a href="{{ path('oferta_new')}}">Crear nueva oferta</a>
+	{% if 'ROLE_ADMIN' in app.user.getroles(true) %}
+		<h1>LINKOLVIN ADMINISTRACIÓN</h1>
+		{% if app.user %}
+			Sessión iniciada como:
+			{{ app.user.email }}
+
+		{% endif %}
 		<br>
-		<a href="{{ path('oferta_index')}}">Administración de tus ofertas</a>
-	</div>
-	<br>
-	<a href="{{ path('app_logout') }}">Cerrar sessión</a>
+		<br>
+		<div>
+			<a href="{{ path('oferta_index')}}">Peticiones de oferta</a>
+		</div>
+		<br>
+		<a href="{{ path('app_logout') }}">Cerrar sessión</a>
+
+	{% endif %}
+	{% if 'ROLE_COMPANY' in app.user.getroles(true) %}
+		<h1>LINKOLVIN GESTIÓN DE TU EMPRESA</h1>
+		{% if app.user %}
+			Sessión iniciada como:
+			{{ app.user.email }}
+
+		{% endif %}
+		<br>
+		<br>
+		<div>
+			<a href="{{ path('oferta_new')}}">Crear nueva oferta</a>
+			<br>
+			<a href="{{ path('oferta_index')}}">Administración de tus ofertas</a>
+		</div>
+		<br>
+		<a href="{{ path('app_logout') }}">Cerrar sessión</a>
+	{% endif %}
 {% endblock %}

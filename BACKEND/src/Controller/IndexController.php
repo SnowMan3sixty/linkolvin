@@ -29,8 +29,11 @@ class IndexController extends AbstractController
     }
     #[Route('/logged', name: 'logged')]
     public function logged()
-    {               
-       if(in_array('ROLE_COMPANY', $this->getUser()->getRoles(), true) ){
+    {
+       if(in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)){
+            return $this->redirectToRoute('index');
+       }               
+       else if(in_array('ROLE_COMPANY', $this->getUser()->getRoles(), true) ){
             if(!($this->getUser()->isVerified())){
                 return $this->redirectToRoute('empresa_new');
             }
@@ -45,7 +48,7 @@ class IndexController extends AbstractController
             else{
                 return $this->redirect('http://localhost:8080');
             }     
-       }     
+       }  
        else{
             return $this->redirect('http://localhost:8080');
        }

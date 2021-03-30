@@ -19,10 +19,18 @@ class OfertaController extends AbstractController
 {
     #[Route('/', name: 'oferta_index', methods: ['GET'])]
     public function index(OfertaRepository $ofertaRepository): Response
-    {        
-        return $this->render('oferta/index.html.twig', [
-            'ofertas' => $ofertaRepository->findByEmpresa(($this->getDoctrine()->getRepository('App:Empresa')->findOneByUsuari($this->getUser()->getId()))->getID()),  
-        ]);
+    {    
+        if(in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)){
+            return $this->render('oferta/index.html.twig', [
+                'ofertas' => $ofertaRepository->findAll(),  
+            ]);
+        }  
+        elseif(in_array('ROLE_COMPANY', $this->getUser()->getRoles(), true)){
+            return $this->render('oferta/index.html.twig', [
+                'ofertas' => $ofertaRepository->findByEmpresa(($this->getDoctrine()->getRepository('App:Empresa')->findOneByUsuari($this->getUser()->getId()))->getID()),  
+            ]);
+        }  
+        
     }
 
     #[Route('/new', name: 'oferta_new', methods: ['GET', 'POST'])]
