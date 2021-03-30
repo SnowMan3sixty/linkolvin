@@ -14,6 +14,8 @@ class MailerController extends AbstractController
      */
     public function sendEmail(MailerInterface $mailer)
     {
+
+        header('Access-Control-Allow-Origin: *');
         $data = json_decode($mailer->getContent(), true);
         $correu = $data['correu'];
 
