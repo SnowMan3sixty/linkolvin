@@ -29,7 +29,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            if($form->get('isCompany')->getData()){
+            if($form->get('SoyEmpresa')->getData()){
                 $user->setRoles(array('ROLE_COMPANY'));
             }
             else{

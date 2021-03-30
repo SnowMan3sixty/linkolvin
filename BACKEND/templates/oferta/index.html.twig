@@ -1,51 +1,100 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tus ofertas{% endblock %}
+{% block title %}Tus ofertas
+{% endblock %}
 
 {% block body %}
-    <h1>Tus ofertas</h1>
+	<h1>Tus ofertas</h1>
 
-    <a href="{{ path('oferta_new') }}">Crear nueva oferta</a>
-    <br>
-    <br>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Empresa</th>
-                <th>Categoria</th>
-                <th>Titol</th>
-                <th>Descripcio</th>
-                <th>DataPublicacio</th>
-                <th>Ubicacio</th>
-                <th>Estat</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ofertum in ofertas %}
-            <tr>
-                <td>{{ ofertum.id }}</td>
-                <td>{{ ofertum.empresa }}</td>
-                <td>{{ ofertum.categoria}}
-                <td>{{ ofertum.titol }}</td>
-                <td>{{ ofertum.descripcio }}</td>
-                <td>{{ ofertum.dataPublicacio ? ofertum.dataPublicacio|date('Y-m-d') : '' }}</td>
-                <td>{{ ofertum.ubicacio }}</td>
-                <td>{{ ofertum.estat }}</td>
-                <td>
-                    <a href="{{ path('oferta_show', {'id': ofertum.id}) }}">Ver</a>
-                    <a href="{{ path('oferta_edit', {'id': ofertum.id}) }}">Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">No hay registros que mostrar</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <br>
-    <a href="{{ path('index') }}">Atràs</a>
-    
-{% endblock %}
+	<a href="{{ path('oferta_new') }}">Crear nueva oferta</a>
+	<br>
+	<br>
+	<h2>Ofertas publicadas</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Empresa</th>
+				<th>Categoria</th>
+				<th>Titol</th>
+				<th>Descripcio</th>
+				<th>DataPublicacio</th>
+				<th>Ubicacio</th>
+				<th>Estat</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% set checker = '0' %}
+			{% for ofertum in ofertas %}
+				{% if ofertum.estat == 1 %}
+					{% set checker = '1' %}
+					<tr>
+						<td>{{ ofertum.id }}</td>
+						<td>{{ ofertum.empresa }}</td>
+						<td>{{ ofertum.categoria}}</td>
+						<td>{{ ofertum.titol }}</td>
+						<td>{{ ofertum.descripcio }}</td>
+						<td>{{ ofertum.dataPublicacio ? ofertum.dataPublicacio|date('Y-m-d') : '' }}</td>
+						<td>{{ ofertum.ubicacio }}</td>
+						<td>{{ ofertum.estat }}</td>
+						<td>
+							<a href="{{ path('oferta_show', {'id': ofertum.id}) }}">Ver</a>
+							<a href="{{ path('oferta_edit', {'id': ofertum.id}) }}">Editar</a>
+						</td>
+					</tr>
+				{% endif %}
+			{% endfor %}
+			{% if checker == 0 %}
+				<tr>
+					<td colspan="7">No hay registros que mostrar</td>
+				</tr>
+			{% endif %}
+		</tbody>
+	</tbody>
+</table>
+<br>
+
+<h2>Ofertas pendientes de publicacion</h2>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Empresa</th>
+			<th>Categoria</th>
+			<th>Titol</th>
+			<th>Descripcio</th>
+			<th>DataPublicacio</th>
+			<th>Ubicacio</th>
+			<th>Estat</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% set checker = '0' %}
+		{% for ofertum in ofertas %}
+			{% if ofertum.estat == 0 %}
+				{% set checker = '1' %}
+				<tr>
+					<td>{{ ofertum.id }}</td>
+					<td>{{ ofertum.empresa }}</td>
+					<td>{{ ofertum.categoria}}</td>
+					<td>{{ ofertum.titol }}</td>
+					<td>{{ ofertum.descripcio }}</td>
+					<td>{{ ofertum.dataPublicacio ? ofertum.dataPublicacio|date('Y-m-d') : '' }}</td>
+					<td>{{ ofertum.ubicacio }}</td>
+					<td>{{ ofertum.estat }}</td>
+					<td>
+						<a href="{{ path('oferta_show', {'id': ofertum.id}) }}">Ver</a>
+						<a href="{{ path('oferta_edit', {'id': ofertum.id}) }}">Editar</a>
+					</td>
+				</tr>
+			{% endif %}
+		{% endfor %}
+		{% if checker == 0 %}
+			<tr>
+				<td colspan="7">No hay registros que mostrar</td>
+			</tr>
+		{% endif %}
+	</tbody>
+</tbody></table><br><a href="{{ path('index') }}">Atràs</a>{% endblock %}
