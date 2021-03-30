@@ -52,10 +52,12 @@ export default {
       })
       .then((value) => {
           if (value === true) {
-            this.axios.post({
-              url: 'http://localhost:8000/email',
+            this.axios.post('http://www.localhost:8000/email', {
               data: {
-                correu: this.infoOfertaCompleta.empresa_id.correu
+                correu: this.infoOfertaCompleta.empresa_id.correu,
+              },
+              headers: {
+                'Access-Control-Allow-Origin': '*'
               }
             })
             alert("Tu curriculum ha sido enviado correctamente");
