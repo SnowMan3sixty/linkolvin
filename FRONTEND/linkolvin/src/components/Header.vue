@@ -25,13 +25,7 @@ export default {
   },
   methods: {
     exit: function () {
-      // const kevinset = this.$cookies.remove("user");
-      var kevinset = this.$cookies.keys();
-      alert(kevinset);
-      kevinset = this.$cookies.get("user");
-      alert(kevinset);
-      kevinset = this.$cookies.set("user", "unlogged");
-      alert(kevinset);
+      this.$cookies.remove("user");
     }
   }
 };

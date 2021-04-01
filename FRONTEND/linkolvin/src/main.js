@@ -28,3 +28,18 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
+// new Vue({
+//   el:'#btn-exit',
+//   data:function() {
+//     return {
+      
+//     }
+//   },
+//   delete: function() {
+//    this.$cookies.set('auth_token','authentication',"1d");
+//    console.log(this.$cookies.isKey('auth_token'));
+//   //  console.log( this.$cookies.remove('auth_token'));
+//   //  console.log(this.$cookies.isKey('auth_token'));
+//   }
+// })

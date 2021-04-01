@@ -1,4 +1,5 @@
 <template>
+  <div class="col-sm-4">
     <b-card 
         :title="infoOferta.titol"
         :img-src="`https://source.unsplash.com/featured/?${infoOferta.ubicacio}`"
@@ -17,6 +18,7 @@
         </b-card-text>
         <small class="text-muted">Last updated 5 mins ago</small>
     </b-card>
+  </div>
 </template>
 <script>
 

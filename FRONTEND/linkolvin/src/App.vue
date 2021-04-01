@@ -11,14 +11,22 @@
         <b-dropdown-item-button @click="smx">SMX</b-dropdown-item-button>
       </b-dropdown>
       <button @click="setCookie">Set Cookie</button>
-      <b-row class="justify-content-md-center">
-        <b-card-group deck>
-          <FichaOferta v-for="oferta in resultado"
-            :key="oferta.id"
-            :infoOferta="oferta">
-          </FichaOferta>
+      <!-- <div class="row">
+        <div class="col-md-3 col-3 my-1">
+        <FichaOferta v-for="oferta in resultado"
+          :key="oferta.id"
+          :infoOferta="oferta">
+        </FichaOferta>
+        </div>
+      </div> -->
+      <b-container class="d-flex justify-center">
+        <b-card-group class="row">
+            <FichaOferta v-for="oferta in resultado"
+              :key="oferta.id"
+              :infoOferta="oferta">
+            </FichaOferta>
         </b-card-group>
-      </b-row>
+      </b-container>
       <b-modal id="modalOfertaCompleta" title="Oferta Completa">
         <FichaOfertaCompleta :infoOfertaCompleta="modal">
         </FichaOfertaCompleta>
@@ -96,5 +104,16 @@ export default {
 <style>
 #principal {
   text-align: center;
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.row {
+   display: flex;
+   flex-wrap: wrap;
+}
+.row > div[class*='col-'] {
+  display: flex;
 }
 </style>

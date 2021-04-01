@@ -16,7 +16,6 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            setcookie("user", "loggued");
             return $this->redirectToRoute('index');
         }
 

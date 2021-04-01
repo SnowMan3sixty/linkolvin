@@ -37,7 +37,7 @@ class CandidatController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($candidat);
             $entityManager->flush();
-
+            setCookie('candidat', $candidat);
             return $this->redirect('http://localhost:8080');
         }
 
