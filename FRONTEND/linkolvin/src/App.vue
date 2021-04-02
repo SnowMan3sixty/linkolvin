@@ -38,6 +38,7 @@ import Header from "./components/Header.vue";
 import FichaOferta from "./components/FichaOferta.vue";
 import FichaOfertaCompleta from "./components/FichaOfertaCompleta.vue";
 import Graficos from "./components/Graficos.vue";
+import moment from 'moment';
 
 export default {
   name: "App",
@@ -120,7 +121,8 @@ export default {
         this.resultado = response.data.records;
         //alert(this.$session.exists());
         //alert(this.$cookies.isKey('micookie'));
-      });
+    });
+    console.log(moment().startOf('day').fromNow());
   },
 };
 </script>

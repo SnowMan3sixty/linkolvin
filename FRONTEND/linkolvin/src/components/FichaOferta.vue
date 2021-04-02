@@ -1,24 +1,48 @@
 <template>
-  <b-card
-    :title="infoOferta.titol"
-    :img-src="`https://source.unsplash.com/featured/?${infoOferta.ubicacio}`"
-    img-alt="Image"
-    img-top
-    img-height="200"
-    img-width="200"
-    tag="article"
-    style="max-width: 20rem"
-    class="mb-2"
-    @click="pasarOfertaCompletaSeleccionada"
-    v-b-modal.modalOfertaCompleta
-  >
-    <b-card-text>
-      {{ this.infoOferta.descripcio }}
-    </b-card-text>
-    <small class="text-muted">Last updated 5 mins ago</small>
-  </b-card>
+  <div>
+    <b-card
+      v-if="(moment(moment().format('YYYY/MM/DD')).diff(this.infoOferta.data_publicacio, 'days')) < 15"
+      :title="infoOferta.titol"
+      :img-src="`https://source.unsplash.com/featured/?${infoOferta.ubicacio}`"
+      img-alt="Image"
+      img-top
+      img-height="200"
+      img-width="200"
+      tag="article"
+      style="max-width: 20rem; border: 5px solid red;"
+      class="mb-2"
+      @click="pasarOfertaCompletaSeleccionada"
+      v-b-modal.modalOfertaCompleta
+    >
+      <b-card-text>
+        {{ this.infoOferta.descripcio }}
+      </b-card-text>
+      <small class="text-muted">Last updated 5 mins ago</small>
+    </b-card>
+    <b-card
+      v-else
+      :title="infoOferta.titol"
+      :img-src="`https://source.unsplash.com/featured/?${infoOferta.ubicacio}`"
+      img-alt="Image"
+      img-top
+      img-height="200"
+      img-width="200"
+      tag="article"
+      style="max-width: 20rem"
+      class="mb-2"
+      @click="pasarOfertaCompletaSeleccionada"
+      v-b-modal.modalOfertaCompleta
+    >
+      <b-card-text>
+        {{ this.infoOferta.descripcio }}
+      </b-card-text>
+      <small class="text-muted">Last updated 5 mins ago</small>
+    </b-card>
+  </div>
 </template>
 <script>
+import moment from 'moment';
+
 export default {
   name: "FichaOferta",
   props: {
@@ -37,6 +61,9 @@ export default {
           this.$parent.modal = response.data.records[0];
         });
     },
+    moment: function () {
+      return moment();
+    }
   },
 };
 </script>
