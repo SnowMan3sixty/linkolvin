@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     pasarOfertaCompletaSeleccionada: function () {
-      console.log(this.infoOferta.id);
+      //console.log(this.infoOferta.id);
       this.axios
         .get(
           "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?join=empresa&join=categoria&filter=id,eq," +
