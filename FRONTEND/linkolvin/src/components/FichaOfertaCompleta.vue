@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card 
+    <b-card
         :title="infoOfertaCompleta.titol"
         tag="article"
         style="max-width: 20rem"

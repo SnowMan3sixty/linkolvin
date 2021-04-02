@@ -20,6 +20,25 @@
       <small class="text-muted">Last updated 5 mins ago</small>
     </b-card>
     <b-card
+      v-else-if="(moment(moment().format('YYYY/MM/DD')).diff(this.infoOferta.data_publicacio, 'days')) > 90"
+      :title="infoOferta.titol"
+      :img-src="`https://source.unsplash.com/featured/?${infoOferta.ubicacio}`"
+      img-alt="Image"
+      img-top
+      img-height="200"
+      img-width="200"
+      tag="article"
+      style="display: none;"
+      class="mb-2"
+      @click="pasarOfertaCompletaSeleccionada"
+      v-b-modal.modalOfertaCompleta
+    >
+      <b-card-text>
+        {{ this.infoOferta.descripcio }}
+      </b-card-text>
+      <small class="text-muted">Last updated 5 mins ago</small>
+    </b-card>
+    <b-card
       v-else
       :title="infoOferta.titol"
       :img-src="`https://source.unsplash.com/featured/?${infoOferta.ubicacio}`"
