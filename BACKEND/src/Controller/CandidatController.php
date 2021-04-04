@@ -40,7 +40,7 @@ class CandidatController extends AbstractController
             setCookie('candidat', $candidat);
             return $this->redirect('http://localhost:8080');
         }
-
+ 
         return $this->render('candidat/new.html.twig', [
             'candidat' => $candidat,
             'form' => $form->createView(),

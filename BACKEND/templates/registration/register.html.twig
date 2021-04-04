@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}Registro linkolvin
 {% endblock %}
 
 {% block body %}
@@ -8,15 +8,15 @@
 		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 	{% endfor %}
 
-	<h1>Register</h1>
+	<h1>Registrarse</h1>
 
 	{{ form_start(registrationForm) }}
 	{{ form_row(registrationForm.email) }}
 	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: 'Contraseña'
         }) }}
-	{{ form_row(registrationForm.isCompany) }}
-
-	<button type="submit" class="btn">Register</button>
+	{{ form_row(registrationForm.SoyEmpresa) }}
+	<br>
+	<button type="submit" class="btn">Registrarse</button>
 	{{ form_end(registrationForm) }}
 {% endblock %}

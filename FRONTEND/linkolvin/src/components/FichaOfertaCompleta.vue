@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card 
+    <b-card
         :title="infoOfertaCompleta.titol"
         tag="article"
         style="max-width: 20rem"
@@ -21,6 +21,12 @@
         <b-card-text>
             {{ this.infoOfertaCompleta.data_publicacio }}
         </b-card-text>
+        <b-card-text>
+            {{ this.infoOfertaCompleta.empresa_id.usuari_id }}
+        </b-card-text>
+        <b-card-text>
+            Han pasado {{ moment(moment().format('YYYY/MM/DD')).diff(this.infoOfertaCompleta.data_publicacio, 'days') }} días
+        </b-card-text>
         <div v-if="$cookies.isKey('micookie')">
           <b-button @click="enviarCVConLogin">Apuntarse a la oferta</b-button>
         </div>
@@ -32,16 +38,28 @@
 </template>
 
 <script>
-import emailjs from 'emailjs-com';
+import moment from 'moment';
 
 export default {
   name: 'FichaOfertaCompleta',
   props: {
     infoOfertaCompleta: {}
-  },  
+  },
+  data() {
+    return {
+      resultado: ""
+    };
+  },
   methods : {
     enviarCVConLogin: function(){
-      this.$bvModal.msgBoxConfirm('¿Estás seguro de enviar tu CV a esta empresa?', {
+      this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=usuari_id,eq," +this.infoOfertaCompleta.empresa_id.usuari_id).then((response) => {
+        console.log(response.data.records[0]);
+        this.resultado = response.data.records[0];
+        console.log("La id de la oferta es: "+this.infoOfertaCompleta.id);
+        console.log("El id del candidato es: "+this.resultado.id);
+        
+      });
+      this.$bvModal.msgBoxConfirm('¿Estás seguro de apuntarte a la oferta de esta empresa?', {
         title: 'Confirma antes de enviar',
         size: 'sm',
         buttonSize: 'sm',
@@ -52,26 +70,36 @@ export default {
         hideHeaderClose: false,
         centered: true
       })
-      .then(function(value){
+      .then((value) => {
           if (value === true) {
-            alert("Tu curriculum ha sido enviado correctamente");
-            var templateParams = {
-                to_name: 'kevilarriega@gmail.com',
-                from_name: 'a18kevlarpal@inspedralbes.cat',
-                message_html: 'Please Find out the attached file'
-            };
-            emailjs.send('service_u5smqsj', 'template_4cooo2i', templateParams, 'user_0CdPDNcOhhrzcq3wy4nk8')
-              .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-              }, function(error) {
-                console.log('FAILED...', error);
+            console.log("La id de la oferta fuera del axios get es: "+this.infoOfertaCompleta.id);
+            console.log("El id del candidato fuera del axios get es: "+this.resultado.id);
+            this.axios.post('http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta_candidat', {
+              data: {
+                ofertaID: this.infoOfertaCompleta.id,
+                candidatoID: this.resultado.id
+              }
+            })
+            .then((response) => {
+              console.log(response);
+            }, (error) => {
+              console.log(error);
             });
+            // alert("Tu curriculum ha sido enviado correctamente");
+            // console.log("Esto va después del alert");
+            // this.axios.post('http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta_candidat',{ofertaID:this.infoOfertaCompleta.id, candidatoID:this.resultado.id}).then((response) => {
+            //   console.log(response.data);
+            //   alert("Te apuntaste a la oferta correctamente");
+            // })
           }
       })
 
     },
     enviarCVSinLogin: function(){
       alert("Debes iniciar sesión para enviar tu curriculum");
+    },
+    moment: function () {
+      return moment();
     }
   }
 }
