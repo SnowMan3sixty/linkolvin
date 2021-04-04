@@ -10,7 +10,6 @@
         <b-dropdown-item-button @click="dam">DAM</b-dropdown-item-button>
         <b-dropdown-item-button @click="smx">SMX</b-dropdown-item-button>
       </b-dropdown>
-      <button @click="setCookie">Set Cookie</button>
       <b-row class="justify-content-md-center">
         <b-card-group deck>
           <FichaOferta
@@ -104,12 +103,7 @@ export default {
           console.log(response.data.records);
           this.resultado = response.data.records;
         });
-    },
-    setCookie() {
-      // it gets the cookie called `username`
-      const kevinset = this.$cookies.set("micookie", 2);
-      console.log(kevinset);
-    },
+    }
   },
   mounted() {
     this.axios

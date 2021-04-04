@@ -27,7 +27,7 @@
         <b-card-text>
             Han pasado {{ moment(moment().format('YYYY/MM/DD')).diff(this.infoOfertaCompleta.data_publicacio, 'days') }} días
         </b-card-text>
-        <div v-if="$cookies.isKey('micookie')">
+        <div v-if="$cookies.isKey('user')">
           <b-button @click="enviarCVConLogin">Apuntarse a la oferta</b-button>
         </div>
         <div v-else>
@@ -52,7 +52,7 @@ export default {
   },
   methods : {
     enviarCVConLogin: function(){
-      this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=usuari_id,eq," +this.infoOfertaCompleta.empresa_id.usuari_id).then((response) => {
+      this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=usuari_id,eq," +this.$cookies.get("user")).then((response) => {
         console.log(response.data.records[0]);
         this.resultado = response.data.records[0];
         console.log("La id de la oferta es: "+this.infoOfertaCompleta.id);
@@ -74,11 +74,9 @@ export default {
           if (value === true) {
             console.log("La id de la oferta fuera del axios get es: "+this.infoOfertaCompleta.id);
             console.log("El id del candidato fuera del axios get es: "+this.resultado.id);
-            this.axios.post('http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta_candidat', {
-              data: {
-                ofertaID: this.infoOfertaCompleta.id,
-                candidatoID: this.resultado.id
-              }
+            this.axios.post('http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/real_oferta_candidat', {
+                oferta_id: this.infoOfertaCompleta.id,
+                candidat_id: this.resultado.id
             })
             .then((response) => {
               console.log(response);
