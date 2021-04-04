@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-4">
+  <div>
     <b-card
       v-if="(moment(moment().format('YYYY/MM/DD')).diff(this.infoOferta.data_publicacio, 'days')) < 15"
       :title="infoOferta.titol"

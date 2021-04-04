@@ -26,6 +26,7 @@ export default {
   methods: {
     exit: function () {
       this.$cookies.remove("user");
+      window.location.href = "http://localhost:8000/logout";
     }
   }
 };

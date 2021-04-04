@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
+
 #[Route('/')]
 class IndexController extends AbstractController
 {
@@ -30,7 +32,8 @@ class IndexController extends AbstractController
     #[Route('/logged', name: 'logged')]
     public function logged()
     {
-       if(in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)){
+        setcookie("user", $this->getUser()->getId());
+        if(in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)){
             return $this->redirectToRoute('index');
        }               
        else if(in_array('ROLE_COMPANY', $this->getUser()->getRoles(), true) ){

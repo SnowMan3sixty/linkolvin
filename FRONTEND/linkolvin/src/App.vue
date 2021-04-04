@@ -20,6 +20,7 @@
           >
           </FichaOferta>
         </b-card-group>
+      </b-row>
       <b-modal id="modalOfertaCompleta" title="Oferta Completa">
         <FichaOfertaCompleta :infoOfertaCompleta="modal"> </FichaOfertaCompleta>
       </b-modal>
@@ -129,16 +130,5 @@ export default {
 <style>
 #principal {
   text-align: center;
-}
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-.row {
-   display: flex;
-   flex-wrap: wrap;
-}
-.row > div[class*='col-'] {
-  display: flex;
 }
 </style>
