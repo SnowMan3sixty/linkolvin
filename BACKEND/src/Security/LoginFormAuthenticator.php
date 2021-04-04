@@ -59,7 +59,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             Security::LAST_USERNAME,
             $credentials['email']
         );
-
+        
         return $credentials;
     }
 
@@ -97,13 +97,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
-        }        
+        }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
 
         // redirect to some "app_homepage" route - of wherever you want
-        
         return new RedirectResponse($this->urlGenerator->generate('logged'));
     }
 
