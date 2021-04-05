@@ -20,7 +20,7 @@
           </FichaOferta>
         </b-card-group>
       </b-row>
-      <b-modal id="modalOfertaCompleta" title="Oferta Completa">
+      <b-modal id="modalOfertaCompleta" title="Datos de la oferta">
         <FichaOfertaCompleta :infoOfertaCompleta="modal"> </FichaOfertaCompleta>
       </b-modal>
       <Graficos

@@ -32,6 +32,7 @@ export default {
   methods: {
     exit: function () {
       this.$cookies.remove("user");
+      this.$cookies.remove("email");
     }
   }
 };

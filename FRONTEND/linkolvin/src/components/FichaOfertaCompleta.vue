@@ -3,29 +3,32 @@
     <b-card
         :title="infoOfertaCompleta.titol"
         tag="article"
-        style="max-width: 20rem"
+        style="max-width: 30rem"
         class="mb-2"
     >
         <b-card-text>
-            {{ this.infoOfertaCompleta.empresa_id.nom }}
+            Nombre de la empresa: {{ this.infoOfertaCompleta.empresa_id.nom }}
         </b-card-text>
         <b-card-text>
-            {{ this.infoOfertaCompleta.categoria_id.descripcio }}
+            Categoría de la oferta: {{ this.infoOfertaCompleta.categoria_id.descripcio }}
         </b-card-text>
         <b-card-text>
-            {{ this.infoOfertaCompleta.ubicacio }}
+            Ubicación de la oferta: {{ this.infoOfertaCompleta.ubicacio }}
         </b-card-text>
         <b-card-text>
-            {{ this.infoOfertaCompleta.descripcio }}
+            Descripción de la oferta: {{ this.infoOfertaCompleta.descripcio }}
         </b-card-text>
         <b-card-text>
-            {{ this.infoOfertaCompleta.data_publicacio }}
+            Publicación de la oferta: {{ this.infoOfertaCompleta.data_publicacio }}
         </b-card-text>
-        <div v-if="$cookies.isKey('user')">
-          <b-button @click="enviarCVConLogin">Apuntarse a la oferta</b-button>
+        <div v-if="($cookies.isKey('user')) && (this.idCandidato_candidat.id != this.idCandidato_real_oferta_candidat.candidat_id) || (this.infoOfertaCompleta.id != this.idCandidato_real_oferta_candidat.oferta_id)">
+          <b-button @click="apuntarseOfertaConLogin">Apuntarse a la oferta</b-button>
+        </div>
+        <div v-else-if="($cookies.isKey('user')) && (this.idCandidato_candidat.id == this.idCandidato_real_oferta_candidat.candidat_id) && (this.infoOfertaCompleta.id == this.idCandidato_real_oferta_candidat.oferta_id)">
+          <b-text>Ya te has apuntado a esta oferta</b-text>
         </div>
         <div v-else>
-          <b-button @click="enviarCVSinLogin">Apuntarse a la oferta</b-button>
+          <b-button @click="apuntarseOfertaSinLogin">Apuntarse a la oferta</b-button>
         </div>
     </b-card>
   </div>
@@ -41,13 +44,16 @@ export default {
   },
   data() {
     return {
-      resultado: ""
+      resultado: "",
+      idCandidato_candidat: "",
+      idCandidato_real_oferta_candidat: "",
+      prueba: ""
     };
   },
   methods : {
-    enviarCVConLogin: function(){
+    apuntarseOfertaConLogin: function(){
       this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=usuari_id,eq," +this.$cookies.get("user")).then((response) => {
-        console.log(response.data.records[0]);
+        //console.log(response.data.records[0]);
         this.resultado = response.data.records[0];
         console.log("La id de la oferta es: "+this.infoOfertaCompleta.id);
         console.log("El id del candidato es: "+this.resultado.id);
@@ -87,12 +93,29 @@ export default {
       })
 
     },
-    enviarCVSinLogin: function(){
+    apuntarseOfertaSinLogin: function(){
       alert("Debes iniciar sesión para enviar tu curriculum");
     },
     moment: function () {
       return moment();
     }
+  },
+  mounted() {
+    this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=usuari_id,eq," +this.$cookies.get("user")).then((response) => {
+      //console.log(response.data.records[0]);
+      this.idCandidato_candidat = response.data.records[0];
+      console.log("El id del candidato es: "+this.idCandidato_candidat.id);
+      this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/real_oferta_candidat?filter=candidat_id,eq," +this.idCandidato_candidat.id).then((response) => {
+        console.log(response.data.records[0]);
+        this.idCandidato_real_oferta_candidat = response.data.records[0];
+        console.log("El id del candidato de la tabla nueva es: "+this.idCandidato_real_oferta_candidat.candidat_id);
+      });
+    }),
+    this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=oferta_id,eq," +this.infoOfertaCompleta.id).then((response) => {
+      //console.log(response.data.records[0]);
+      this.prueba = response.data.records[0];
+      console.log("La id de la oferta es: "+this.prueba.id);
+    })
   }
 }
 </script>
