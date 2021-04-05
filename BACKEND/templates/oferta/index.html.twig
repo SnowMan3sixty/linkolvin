@@ -86,7 +86,10 @@
 					<td>{{ ofertum.estat }}</td>
 					<td>
 						<a href="{{ path('oferta_show', {'id': ofertum.id}) }}">Ver</a>
-						<a href="{{ path('oferta_edit', {'id': ofertum.id}) }}">Editar</a>
+						{% if 'ROLE_ADMIN' in app.user.getroles(true) %}
+							<a href="{{ path('oferta_aprove', {'id': ofertum.id}) }}">Aprovar</a>
+							<a href="{{ path('oferta_denegate', {'id': ofertum.id}) }}">Denegar</a>
+						{% endif %}
 					</td>
 				</tr>
 			{% endif %}

@@ -87,6 +87,26 @@ class OfertaController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/aprove', name: 'oferta_aprove', methods: ['GET', 'POST'])]
+    public function aprove(Request $request, Oferta $ofertum): Response
+    {
+        $ofertum->setEstat(1);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($ofertum);
+        $entityManager->flush();
+        return $this->redirectToRoute('oferta_index');
+    }
+
+    #[Route('/{id}/denegate', name: 'oferta_denegate', methods: ['GET', 'POST'])]
+    public function denegate(Request $request, Oferta $ofertum): Response
+    {
+        $ofertum->setEstat(2);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($ofertum);
+        $entityManager->flush();
+        return $this->redirectToRoute('oferta_index');
+    }
+
     #[Route('/{id}', name: 'oferta_delete', methods: ['DELETE'])]
     public function delete(Request $request, Oferta $ofertum): Response
     {

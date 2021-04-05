@@ -57,7 +57,7 @@ export default {
     todo: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=estat,eq,1"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -67,7 +67,7 @@ export default {
     asix: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,2"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,2&filter2=estat,eq,1"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -77,7 +77,7 @@ export default {
     daw: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,3"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,3&filter2=estat,eq,1"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -87,7 +87,7 @@ export default {
     dam: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,4"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,4&filter2=estat,eq,1"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -97,7 +97,7 @@ export default {
     smx: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,5"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,5&filter2=estat,eq,1"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -108,7 +108,7 @@ export default {
   mounted() {
     this.axios
       .get(
-        "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?order=data_publicacio,desc"
+        "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?order=data_publicacio,desc&filter2=estat,eq,1"
       )
       .then((response) => {
         console.log(response.data.records);
