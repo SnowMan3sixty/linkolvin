@@ -21,12 +21,6 @@
         <b-card-text>
             {{ this.infoOfertaCompleta.data_publicacio }}
         </b-card-text>
-        <b-card-text>
-            {{ this.infoOfertaCompleta.empresa_id.usuari_id }}
-        </b-card-text>
-        <b-card-text>
-            Han pasado {{ moment(moment().format('YYYY/MM/DD')).diff(this.infoOfertaCompleta.data_publicacio, 'days') }} días
-        </b-card-text>
         <div v-if="$cookies.isKey('user')">
           <b-button @click="enviarCVConLogin">Apuntarse a la oferta</b-button>
         </div>

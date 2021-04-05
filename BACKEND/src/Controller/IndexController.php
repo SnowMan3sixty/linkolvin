@@ -33,6 +33,7 @@ class IndexController extends AbstractController
     public function logged()
     {
         setcookie("user", $this->getUser()->getId());
+        setcookie("email", $this->getUser()->getEmail());
         if(in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)){
             return $this->redirectToRoute('index');
        }               

@@ -117,7 +117,7 @@ export default {
         //alert(this.$cookies.isKey('micookie'));
     });
     console.log(moment().startOf('day').fromNow());
-  },
+  }
 };
 </script>
 

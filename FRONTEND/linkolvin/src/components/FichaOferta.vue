@@ -17,7 +17,7 @@
       <b-card-text>
         {{ this.infoOferta.descripcio }}
       </b-card-text>
-      <small class="text-muted">Last updated 5 mins ago</small>
+      <small class="text-muted">Publicado hace {{ moment(moment().format('YYYY/MM/DD')).diff(this.infoOferta.data_publicacio, 'days') }} días</small>
     </b-card>
     <b-card
       v-else-if="(moment(moment().format('YYYY/MM/DD')).diff(this.infoOferta.data_publicacio, 'days')) > 90"
@@ -36,7 +36,7 @@
       <b-card-text>
         {{ this.infoOferta.descripcio }}
       </b-card-text>
-      <small class="text-muted">Last updated 5 mins ago</small>
+      <small class="text-muted">Publicado hace {{ moment(moment().format('YYYY/MM/DD')).diff(this.infoOferta.data_publicacio, 'days') }} días</small>
     </b-card>
     <b-card
       v-else
@@ -55,7 +55,7 @@
       <b-card-text>
         {{ this.infoOferta.descripcio }}
       </b-card-text>
-      <small class="text-muted">Last updated 5 mins ago</small>
+      <small class="text-muted">Publicado hace {{ moment(moment().format('YYYY/MM/DD')).diff(this.infoOferta.data_publicacio, 'days') }} días</small>
     </b-card>
   </div>
 </template>
