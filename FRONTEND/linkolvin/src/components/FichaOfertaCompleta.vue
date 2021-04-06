@@ -94,7 +94,7 @@ export default {
 
     },
     apuntarseOfertaSinLogin: function(){
-      alert("Debes iniciar sesión para enviar tu curriculum");
+      alert("Debes iniciar sesión para apuntarte a la oferta");
     },
     moment: function () {
       return moment();
