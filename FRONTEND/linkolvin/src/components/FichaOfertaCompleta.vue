@@ -24,9 +24,9 @@
         <div v-if="$cookies.isKey('user')">
           <b-button @click="apuntarseOfertaConLogin">Apuntarse a la oferta</b-button>
         </div>
-        <!-- <div v-else-if="($cookies.isKey('user')) && (this.idCandidato_candidat.id == this.idCandidato_real_oferta_candidat.candidat_id) && (this.infoOfertaCompleta.id == this.idCandidato_real_oferta_candidat.oferta_id)">
+        <div v-else-if="(this.idCandidato_candidat.id == this.idCandidato_real_oferta_candidat.candidat_id) && (this.infoOfertaCompleta.id == this.idCandidato_real_oferta_candidat.oferta_id)">
           <b-text>Ya te has apuntado a esta oferta</b-text>
-        </div> -->
+        </div>
         <div v-else>
           <b-button @click="apuntarseOfertaSinLogin">Apuntarse a la oferta</b-button>
         </div>
@@ -106,7 +106,7 @@ export default {
       this.idCandidato_candidat = response.data.records[0];
       console.log("El id del candidato es: "+this.idCandidato_candidat.id);
       this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/real_oferta_candidat?filter=candidat_id,eq," +this.idCandidato_candidat.id).then((response) => {
-        console.log(response.data.records[0]);
+        console.log("TABLA REAL" + response.data.records);
         this.idCandidato_real_oferta_candidat = response.data.records[0];
         console.log("El id del candidato de la tabla nueva es: "+this.idCandidato_real_oferta_candidat.candidat_id);
       });
