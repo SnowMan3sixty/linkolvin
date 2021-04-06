@@ -21,12 +21,12 @@
         <b-card-text>
             Publicación de la oferta: {{ this.infoOfertaCompleta.data_publicacio }}
         </b-card-text>
-        <div v-if="($cookies.isKey('user')) && (this.idCandidato_candidat.id != this.idCandidato_real_oferta_candidat.candidat_id) || (this.infoOfertaCompleta.id != this.idCandidato_real_oferta_candidat.oferta_id)">
+        <div v-if="$cookies.isKey('user')">
           <b-button @click="apuntarseOfertaConLogin">Apuntarse a la oferta</b-button>
         </div>
-        <div v-else-if="($cookies.isKey('user')) && (this.idCandidato_candidat.id == this.idCandidato_real_oferta_candidat.candidat_id) && (this.infoOfertaCompleta.id == this.idCandidato_real_oferta_candidat.oferta_id)">
+        <!-- <div v-else-if="($cookies.isKey('user')) && (this.idCandidato_candidat.id == this.idCandidato_real_oferta_candidat.candidat_id) && (this.infoOfertaCompleta.id == this.idCandidato_real_oferta_candidat.oferta_id)">
           <b-text>Ya te has apuntado a esta oferta</b-text>
-        </div>
+        </div> -->
         <div v-else>
           <b-button @click="apuntarseOfertaSinLogin">Apuntarse a la oferta</b-button>
         </div>
