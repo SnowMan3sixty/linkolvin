@@ -57,7 +57,7 @@ export default {
     todo: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=estat,eq,1"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=estat,eq,1&order=data_publicacio,desc"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -67,7 +67,7 @@ export default {
     asix: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,2&filter2=estat,eq,1"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,2&filter2=estat,eq,1&order=data_publicacio,desc"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -77,7 +77,7 @@ export default {
     daw: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,3&filter2=estat,eq,1"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,3&filter2=estat,eq,1&order=data_publicacio,desc"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -87,7 +87,7 @@ export default {
     dam: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,4&filter2=estat,eq,1"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,4&filter2=estat,eq,1&order=data_publicacio,desc"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -97,7 +97,7 @@ export default {
     smx: function () {
       this.axios
         .get(
-          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,5&filter2=estat,eq,1"
+          "http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/oferta?filter=categoria_id,eq,5&filter2=estat,eq,1&order=data_publicacio,desc"
         )
         .then((response) => {
           console.log(response.data.records);
@@ -124,5 +124,9 @@ export default {
 <style>
 #principal {
   text-align: center;
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 </style>
