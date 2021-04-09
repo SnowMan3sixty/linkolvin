@@ -100,23 +100,23 @@ export default {
       return moment();
     }
   },
-  mounted() {
-    this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=usuari_id,eq," +this.$cookies.get("user")).then((response) => {
-      //console.log(response.data.records[0]);
-      this.idCandidato_candidat = response.data.records[0];
-      console.log("El id del candidato es: "+this.idCandidato_candidat.id);
-      this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/real_oferta_candidat?filter=candidat_id,eq," +this.idCandidato_candidat.id).then((response) => {
-        console.log("TABLA REAL" + response.data.records);
-        this.idCandidato_real_oferta_candidat = response.data.records[0];
-        console.log("El id del candidato de la tabla nueva es: "+this.idCandidato_real_oferta_candidat.candidat_id);
-      });
-    }),
-    this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=oferta_id,eq," +this.infoOfertaCompleta.id).then((response) => {
-      //console.log(response.data.records[0]);
-      this.prueba = response.data.records[0];
-      console.log("La id de la oferta es: "+this.prueba.id);
-    })
-  }
+  // mounted() {
+  //   this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=usuari_id,eq," +this.$cookies.get("user")).then((response) => {
+  //     //console.log(response.data.records[0]);
+  //     this.idCandidato_candidat = response.data.records[0];
+  //     console.log("El id del candidato es: "+this.idCandidato_candidat.id);
+  //     this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/real_oferta_candidat?filter=candidat_id,eq," +this.idCandidato_candidat.id).then((response) => {
+  //       console.log("TABLA REAL" + response.data.records);
+  //       this.idCandidato_real_oferta_candidat = response.data.records[0];
+  //       console.log("El id del candidato de la tabla nueva es: "+this.idCandidato_real_oferta_candidat.candidat_id);
+  //     });
+  //   }),
+  //   this.axios.get("http://labs.iam.cat/~a18kevlarpal/transversal3/api.php/records/candidat?filter=oferta_id,eq," +this.infoOfertaCompleta.id).then((response) => {
+  //     //console.log(response.data.records[0]);
+  //     this.prueba = response.data.records[0];
+  //     console.log("La id de la oferta es: "+this.prueba.id);
+  //   })
+  // }
 }
 </script>
 
