@@ -91,6 +91,12 @@ class OfertaController extends AbstractController
     public function aprove(Request $request, Oferta $ofertum): Response
     {
         $ofertum->setEstat(1);
+
+
+
+
+        $ofertum->setDataPublicacio(new \DateTime(date("Y/m/d")));
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($ofertum);
         $entityManager->flush();
