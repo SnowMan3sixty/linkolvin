@@ -36,14 +36,14 @@ class IndexController extends AbstractController
         setcookie("user", $this->getUser()->getId());
         setcookie("email", $this->getUser()->getEmail());
         if(in_array('ROLE_ADMIN', $this->getUser()->getRoles(), true)){
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('oferta_index');
        }               
        else if(in_array('ROLE_COMPANY', $this->getUser()->getRoles(), true) ){
             if(!($this->getUser()->isVerified())){
                 return $this->redirectToRoute('empresa_new');
             }
             else{
-                return $this->redirectToRoute('index');
+                return $this->redirectToRoute('oferta_index');
             }        
        }
        else if(in_array('ROLE_USER', $this->getUser()->getRoles(), true)){

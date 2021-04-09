@@ -3,6 +3,33 @@
 {% block title %}Categoria index{% endblock %}
 
 {% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Linkolvin ADMIN</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://localhost:8080">Index</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('oferta_index') }}">Oferta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('categoria_index') }}">Categorias</a>
+                    </li>
+					<li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Cerrar sesion</a>
+                    </li>
+                </ul>
+                {% if app.user %}
+			    Sessión iniciada como:
+			    {{ app.user.email }}
+	        	{% endif %}
+            </div>
+        </nav>
     <h1>Categoria index</h1>
 
     <table class="table">
@@ -31,5 +58,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('categoria_new') }}">Create new</a>
+    <a href="{{ path('categoria_new') }}">Nueva categoria</a>
+    <br>
+    <br>
+    <a href="{{ path('oferta_index') }}">Volver</a>
 {% endblock %}
