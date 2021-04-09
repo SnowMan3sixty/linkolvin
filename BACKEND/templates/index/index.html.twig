@@ -26,21 +26,13 @@
                         <a class="nav-link" href="{{ path('app_logout') }}">Cerrar sesion</a>
                     </li>
                 </ul>
+                {% if app.user %}
+			    Sessión iniciada como:
+			    {{ app.user.email }}
+	        	{% endif %}
             </div>
         </nav>
-		{# <h1>LINKOLVIN ADMINISTRACIÓN</h1>
-		{% if app.user %}
-			Sessión iniciada como:
-			{{ app.user.email }}
 
-		{% endif %}
-		<br>
-		<br>
-		<div>
-			<a href="{{ path('oferta_index')}}">Peticiones de oferta</a>
-		</div>
-		<br>
-		<a href="{{ path('app_logout') }}">Cerrar sesion</a> #}
 
 	{% endif %}
 	{% if 'ROLE_COMPANY' in app.user.getroles(true) %}
@@ -62,22 +54,15 @@
                         <a class="nav-link" href="{{ path('app_logout') }}">Cerrar sesion</a>
                     </li>
                 </ul>
+                {% if app.user %}
+			    Sessión iniciada como:
+			    {{ app.user.email }}
+	        	{% endif %}
             </div>
         </nav>
 		<h1>GESTIÓN DE EMPRESA</h1>
 		{% if app.user %}
 			Sessión iniciada como:
 			{{ app.user.email }}
-
 		{% endif %}
-		<br>
-		<br>
-		<div>
-			<a href="{{ path('oferta_new')}}">Crear nueva oferta</a>
-			<br>
-			<a href="{{ path('oferta_index')}}">Administración de tus ofertas</a>
-		</div>
-		<br>
-		<a href="{{ path('app_logout') }}">Cerrar sessión</a>
-	{% endif %}
 {% endblock %}
